@@ -70,16 +70,14 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
-    @if(Route::is('admin.*'))
-        <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
-    @endif
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/mobile-menu.css') }}" />
 
 
 
     <!-- Professional Admin Pages Styling -->
 </head>
-<body class="{{ Route::is('admin.*') ? 'admin-page' : '' }}">
+<body class="admin-page">
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom" id="layout-navbar">
     <div class="container-xxl">
@@ -126,13 +124,7 @@
 <!-- Page Content -->
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
-        @if(auth()->check() && auth()->user()->role && auth()->user()->role->role_name == 'admin')
-            @include('admin.menu')
-        @elseif(auth()->check() && auth()->user()->role)
-            @include('user.menu')
-        @else
-            <!-- No menu for unauthenticated users or users without roles -->
-        @endif
+        @include('admin.menu')
 
         <div class="layout-page">
             <main class="py-4">
